@@ -1,7 +1,12 @@
 import { IoAccessibilityOutline, IoHeartOutline, IoListOutline, IoLockClosedOutline, IoPawOutline } from 'react-icons/io5';
 import { WhiteCard } from '../../components';
+import { useBearStore, usePersonStore } from '../../stores';
 
 export const Dashboard = () => {
+  const getTotalBears = useBearStore(state => state.getTotalBears)
+  const { totalBears } = useBearStore(state => state.computed)
+  const firstName = usePersonStore(state => state.firstName)
+  const lastName = usePersonStore(state => state.lastName)
   return (
     <>
       <h1>Dashboard</h1>
@@ -13,14 +18,17 @@ export const Dashboard = () => {
         <WhiteCard centered>
           <IoPawOutline size={ 50 } className="text-indigo-600" />
           <h2>Osos</h2>
-          <p>Información</p>
+          <p>Funcion {getTotalBears()}</p>
+          <p>Computed {totalBears}</p>
+          <p>Computed no funciona con el PERSIST</p>
         </WhiteCard>
 
 
         <WhiteCard centered>
           <IoAccessibilityOutline size={ 50 } className="text-indigo-600" />
           <h2>Persona</h2>
-          <p>Información</p>
+          <p>{firstName}</p>
+          <p>{lastName}</p>
         </WhiteCard>
 
 
